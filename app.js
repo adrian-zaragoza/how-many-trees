@@ -23,15 +23,17 @@ app.post('/carbonfootprint', jsonParser, (request, response) => {
   'Content-Type': 'application/json',
   'Authorization': 'Bearer DoRWhU2QqYwELzPyS10VQ'
 });
+  //console.log(request.body)
   fetch('https://www.carboninterface.com/api/v1/estimates', {
     "method": 'post',
     "headers": myHeaders,
     "body": JSON.stringify(request.body)
   })
   .then((response) => {
-    console.log("response", response)
+      console.log("This is the response", response)
       return response.text();
   }).then((body) => {
+      console.log("This is the body", body)
       let results = JSON.parse(body)
       console.log(results)   // logs to server
       response.send(results) // sends to frontend
