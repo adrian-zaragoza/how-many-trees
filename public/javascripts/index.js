@@ -49,37 +49,80 @@ const carbonfootprintChart = () => {
         dataArr.push(trip)
     }
     console.log(dataArr);
-    const margin = 60;
-    const width = 800 - 2 * margin;
-    const height = 600 - 2 * margin;
-    const svg = d3.select('svg')
+    
+    const width = 800;
+    const height = 600;
+    const margin = {top: 50, bottom: 50, left: 50, right: 50}
+    const svg = d3.select('#category-chart')
+        .append('svg')
+        .attr('height', height - margin.top - margin.bottom)
+        .attr('width', width - margin.left - margin.right)
+        .attr('viewBox', [0, 0, width, height]);
 
-
-    const chart = svg.append('g').attr('transform', `translate(${margin}, ${margin})`);
-    const yScale = d3.scaleLinear().range([height, 0]).domain([0, 100]);
-    chart.append('g').call(d3.axisLeft(yScale));
-
-    const xScale = d3.scaleBand()
-        .range([0, width])
-        .domain(dataArr.map((trip) => `${trip.legs[0].departure_airport} to ${trip.legs[0].destination_airport}`))
+    const x = d3.scaleBand()
+        .domain(d3.range(dataArr.length))
+        .range([margin.left, width - margin.right])
         .padding(0.2);
 
-    chart.append('g').attr('transform', `translate(0, ${height})`).call(d3.axisBottom(xScale));
+    const y = d3.scaleLinear()
+        .domain([0, 2000])
+        .range([height - margin.bottom, margin.top]);
 
-    chart.selectAll()
+    svg.append('g')
+        .attr('fill', 'green')
+        .selectAll('rect')
         .data(dataArr)
-        .enter()
-        .append('rect')
-        .attr('x', (s) => xScale(s))
-        .attr('y', (s) => {
-            if(sessionStorage.length === 0){
-                return yScale(0);
-            }else{
-             return yScale(s.carbon_lb)
-            }
-        })
-        .attr('height', (s) => height - (sessionStorage.length !== 0 ? yScale(s.carbon_lb) : yScale(0)))
-        .attr('width', xScale.bandwidth())
+        .join('rect')
+            .attr('x', (dataArr, i) => x(i))
+            .attr('y', (dataArr) => y(dataArr.carbon_lb))
+            .attr('height', (dataArr) => y(0) - y(dataArr.carbon_lb))
+            .attr('width', x.bandwidth());
+
+    function xAxis(g){
+        g.attr('transform', `translate(0, ${height - margin.bottom})`)
+            .call(d3.axisBottom(x).tickFormat(i =>{
+                let dataObj = dataArr[i];
+                let axisName = `${dataObj.legs[0].departure_airport} to ${dataObj.legs[0].destination_airport} `;
+                return axisName;
+            }))
+            .attr('font-size', '12px')
+    }
+
+    function yAxis(g){
+        g.attr('transform', `translate(${margin.left}, 0)`)
+            .call(d3.axisLeft(y).tickFormat(null, dataArr.format))
+    }
+
+    svg.append('g').call(yAxis);
+    svg.append('g').call(xAxis);
+    svg.node();
+
+    // const chart = svg.append('g').attr('transform', `translate(${margin}, ${margin})`);
+    // const yScale = d3.scaleLinear().range([height, 0]).domain([0, 100]);
+    // chart.append('g').call(d3.axisLeft(yScale));
+
+    // const xScale = d3.scaleBand()
+    //     .range([0, width])
+    //     .domain(dataArr.map((trip) => `${trip.legs[0].departure_airport} to ${trip.legs[0].destination_airport}`))
+    //     .padding(0.2);
+
+    // chart.append('g').attr('transform', `translate(0, ${height})`).call(d3.axisBottom(xScale));
+
+    // chart.selectAll()
+    //     .data(dataArr)
+    //     .enter()
+    //     .append('rect')
+    //     .attr('x', (trip) => xScale(trip[`${trip.legs[0].departure_airport} to ${trip.legs[0].destination_airport}`]))
+    //     .attr('y', (s) => {
+    //         if(sessionStorage.length === 0){
+    //             return yScale(0);
+    //         }else{
+    //         console.log(yScale(s))
+    //          return yScale(s.carbon_lb);
+    //         }
+    //     })
+    //     .attr('height', (s) => height - (sessionStorage.length !== 0 ? yScale(s.carbon_lb) : yScale(0)))
+    //     .attr('width', xScale.bandwidth())
 
 }
 
