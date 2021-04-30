@@ -33,6 +33,8 @@ const sendFlightApiRequest = (e) => {
             //console.log(response);
             sessionStorage.setItem(`Trip ${sessionStorage.length + 1}`, JSON.stringify(response.data.data.attributes))
             console.log("This is the session storage",sessionStorage);
+            let graphParentEle = document.getElementById('category-chart')
+            removeChildNodes(graphParentEle);
             carbonfootprintChart(response.data.data.attributes);
 
         })
@@ -40,6 +42,12 @@ const sendFlightApiRequest = (e) => {
             console.log(error);
         });
 
+}
+
+const removeChildNodes = (parentEle)=>{
+    while(parentEle.firstChild){
+        parentEle.removeChild(parentEle.firstChild);
+    }
 }
 
 const carbonfootprintChart = () => {
@@ -53,6 +61,7 @@ const carbonfootprintChart = () => {
     const width = 800;
     const height = 600;
     const margin = {top: 50, bottom: 50, left: 50, right: 50}
+
     const svg = d3.select('#category-chart')
         .append('svg')
         .attr('height', height - margin.top - margin.bottom)
@@ -65,9 +74,18 @@ const carbonfootprintChart = () => {
         .padding(0.2);
 
     const y = d3.scaleLinear()
-        .domain([0, 2000])
+        .domain([0, d3.max(dataArr, function (dataObj){ return dataObj.carbon_lb + 10; })])
         .range([height - margin.bottom, margin.top]);
-
+    
+    //This is for the grid lines
+    svg.append('g')
+        .attr('class', 'grid')
+        .attr('transform', `translate(${margin.left})`)
+        .call(d3.axisLeft(y)
+            .scale(y)
+            .tickSize(-width, 0, 0)
+            .tickFormat(''))
+    //This is for the bars
     svg.append('g')
         .attr('fill', 'green')
         .selectAll('rect')
@@ -95,34 +113,11 @@ const carbonfootprintChart = () => {
 
     svg.append('g').call(yAxis);
     svg.append('g').call(xAxis);
+
+
     svg.node();
 
-    // const chart = svg.append('g').attr('transform', `translate(${margin}, ${margin})`);
-    // const yScale = d3.scaleLinear().range([height, 0]).domain([0, 100]);
-    // chart.append('g').call(d3.axisLeft(yScale));
 
-    // const xScale = d3.scaleBand()
-    //     .range([0, width])
-    //     .domain(dataArr.map((trip) => `${trip.legs[0].departure_airport} to ${trip.legs[0].destination_airport}`))
-    //     .padding(0.2);
-
-    // chart.append('g').attr('transform', `translate(0, ${height})`).call(d3.axisBottom(xScale));
-
-    // chart.selectAll()
-    //     .data(dataArr)
-    //     .enter()
-    //     .append('rect')
-    //     .attr('x', (trip) => xScale(trip[`${trip.legs[0].departure_airport} to ${trip.legs[0].destination_airport}`]))
-    //     .attr('y', (s) => {
-    //         if(sessionStorage.length === 0){
-    //             return yScale(0);
-    //         }else{
-    //         console.log(yScale(s))
-    //          return yScale(s.carbon_lb);
-    //         }
-    //     })
-    //     .attr('height', (s) => height - (sessionStorage.length !== 0 ? yScale(s.carbon_lb) : yScale(0)))
-    //     .attr('width', xScale.bandwidth())
 
 }
 
