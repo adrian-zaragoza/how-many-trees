@@ -8,15 +8,19 @@
   "description": "",
   "main": "app.js",
   "repository": "https://github.com/jonchaney/node-api-backend.git",
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
-    "postinstall": "webpack",
     "start": "node app.js",
+    "server": "nodemon app.js",
+    "server:debug": "nodemon --inspect app.js",
     "start:debug": "DEBUG=* node app.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+    "postinstall": "webpack"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@babel/preset-env": "^7.13.15",
     "axios": "^0.21.1",
