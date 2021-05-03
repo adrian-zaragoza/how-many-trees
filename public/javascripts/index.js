@@ -30,16 +30,14 @@ const sendFlightApiRequest = (e) => {
         "distance_unit": "mi"
         })
         .then((response) => {
-            //console.log(response);
             sessionStorage.setItem(`Trip ${sessionStorage.length + 1}`, JSON.stringify(response.data.data.attributes))
-            console.log("This is the session storage",sessionStorage);
             let graphParentEle = document.getElementById('category-chart')
             removeChildNodes(graphParentEle);
-            carbonfootprintChart(response.data.data.attributes);
+            carbonfootprintChart();
 
         })
         .catch(function (error) {
-            console.log(error);
+            //console.log(error);
         });
 
 }
@@ -56,7 +54,6 @@ const carbonfootprintChart = () => {
         let trip = JSON.parse(sessionStorage.getItem(`Trip ${i + 1}`));
         dataArr.push(trip)
     }
-    console.log(dataArr);
     
     const width = 500;
     const height = 300;
@@ -168,7 +165,6 @@ const carbonfootprintChart = () => {
 document.addEventListener('DOMContentLoaded', () => {
     flightCategoryPage();
     carbonfootprintChart();
-    console.log("I'm inside event listener")
     // axios.post('/carbonfootprint',{
     //     "type": "flight",
     //     "passengers": 2,
