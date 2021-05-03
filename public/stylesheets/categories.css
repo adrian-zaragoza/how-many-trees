@@ -1,9 +1,136 @@
+header > h1{
+  font-size: 35px;
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: 600;
+  color: #206a5d;
+  margin-bottom: 40px;
+}
+
+header{
+  margin-top: 15px;
+  margin-left: 5px;
+}
+
 .category-title{
-  width: 300px;
   height: 100px;
 }
 
 svg{
-  width: 800px;
-  height: 600px;
+  width: auto;
+  height: 500px;
+}
+
+#main > .title-container{
+  width: auto;
+  background-color: #f1f1e8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 30px;
+  margin-right: 30px;
+  border-radius: 5px;
+}
+
+#main > .title-container > h2{
+  align-self: center;
+  color: #a35709;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+
+}
+
+#main{
+  font-family: 'Titillium Web', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.main-section{
+  display: flex;
+  flex-direction: row;
+  margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.nav-bar{
+  width: 150px;
+  height: auto;
+  background-color: #f1f1e8;
+  margin-left: 30px;
+  border-radius: 5px;
+}
+
+#category-chart{
+  background-color: #f1f1e8;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: 15px;
+  width: auto;
+  border-radius: 5px;
+}
+
+.chart-sections{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-right: 30px;
+  
+}
+
+
+.data-inputs-form{
+  color: #a35709;
+  font-size: 17px;
+  margin-left: 15px;
+  margin-top: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #f1f1e8;
+  border-radius: 5px;
+
+}
+
+.carbonfootprint-form{
+  display: flex;
+  flex-direction:column;
+  text-align: center;
+}
+
+.carbonfootprint-form > input[type="submit"]{
+  align-self: center;
+  width: 25%;
+  background-color: #206a5d;
+  border: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #81b214;
+  font-size: 20px;
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: 700;
+  border-radius: 5px;
+  transition: all 0.2s linear;
+}
+
+.carbonfootprint-form > input[type="submit"]:hover {
+  background-color: #81b214;
+  color: #206a5d;
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+
+.carbonfootprint-form > * {
+  margin-top: 5px;
+}
+
+.carbonfootprint-form > label > input[type="text"]{
+  margin-left: 5px;
+}
+
+.carbonfootprint-form > label > input[type="number"]{
+  margin-left: 5px;
 }
