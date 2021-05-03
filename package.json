@@ -2,12 +2,13 @@
   "name": "how_many_trees",
   "version": "1.0.0",
   "engines": {
-    "node": "10.13.0"
+    "node": "10.13.0",
+    "npm": "6.4.1"
   },
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --watch --mode development",
+    "postinstall": "webpack",
     "start": "node app.js",
     "start:debug": "DEBUG=* node app.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
