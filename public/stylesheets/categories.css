@@ -142,8 +142,14 @@ svg{
   font-family: 'Titillium Web', sans-serif;
   font-size: 14px;
   font-weight: 700;
-  fill: #a35709;
+  fill: #206a5d;
   background-color: #f1f1e8;
+}
+
+#limit{
+    stroke: #206a5d;
+    stroke-width: 3;
+    stroke-linecap: round;
 }
 
 .bar{

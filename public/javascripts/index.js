@@ -99,13 +99,20 @@ const carbonfootprintChart = () => {
     .attr('height', (dataArr) => height - yScale(dataArr.carbon_lb))
     .attr('width', xScale.bandwidth())
     .on('mouseenter', function(bar, i){
-        
         d3.select(this)
-          .transition()
-          .duration(300)
-          .attr('opacity', 0.5)
-          .attr('x', (dataObj) => xScale(`${dataObj.legs[0].departure_airport} to ${dataObj.legs[0].destination_airport}`) - 10)
-          .attr('width', xScale.bandwidth() + 20)
+            .transition()
+            .duration(300)
+            .attr('opacity', 0.5)
+            .attr('x', (dataObj) => xScale(`${dataObj.legs[0].departure_airport} to ${dataObj.legs[0].destination_airport}`) - 10)
+            .attr('width', xScale.bandwidth() + 20)
+        
+        const y = yScale(i.carbon_lb) + 2;
+        line = chart.append('line')
+            .attr('id', 'limit')
+            .attr('x1', 0)
+            .attr('y1', y)
+            .attr('x2', width)
+            .attr('y2', y)
     })
 
     barGroup.on('mouseenter', function(bar, i){
