@@ -93,19 +93,63 @@ const carbonfootprintChart = () => {
     
     barGroup
     .append('rect')
-    .attr('fill', 'green')
     .attr('class', 'bar')
     .attr('x', (dataObj) => xScale(`${dataObj.legs[0].departure_airport} to ${dataObj.legs[0].destination_airport}`))
     .attr('y', (dataArr) => yScale(dataArr.carbon_lb))
     .attr('height', (dataArr) => height - yScale(dataArr.carbon_lb))
     .attr('width', xScale.bandwidth())
     .on('mouseenter', function(bar, i){
+        
         d3.select(this)
           .transition()
           .duration(300)
-          .attr('opacity', 0.6)
-          .attr('x', (dataObj) => xScale(`${dataObj.legs[0].departure_airport} to ${dataObj.legs[0].destination_airport}`) - 15)
+          .attr('opacity', 0.5)
+          .attr('x', (dataObj) => xScale(`${dataObj.legs[0].departure_airport} to ${dataObj.legs[0].destination_airport}`) - 10)
           .attr('width', xScale.bandwidth() + 20)
+    })
+
+    barGroup.on('mouseenter', function(bar, i){
+        d3.select(this).select('.value').attr('opacity', 0)
+        d3.select(this)
+            .append('text')
+            .attr('class', 'additional-values')
+            .attr('x', (dataObj) =>  xScale(`${dataObj.legs[0].departure_airport} to ${dataObj.legs[0].destination_airport}`) + xScale.bandwidth() / 2)
+            .attr('y', (dataObj) => yScale(dataObj.carbon_lb) - 40)
+            .attr('text-anchor', 'middle')
+            .text((dataObj) => `${dataObj.carbon_lb} lbs`)
+
+        d3.select(this)
+            .append('text')
+            .attr('class', 'additional-values')
+            .attr('x', (dataObj) =>  xScale(`${dataObj.legs[0].departure_airport} to ${dataObj.legs[0].destination_airport}`) + xScale.bandwidth() / 2)
+            .attr('y', (dataObj) => yScale(dataObj.carbon_lb) - 30)
+            .attr('text-anchor', 'middle')
+            .text((dataObj) => `${dataObj.carbon_g} g`)
+
+        d3.select(this)
+            .append('text')
+            .attr('class', 'additional-values')
+            .attr('x', (dataObj) =>  xScale(`${dataObj.legs[0].departure_airport} to ${dataObj.legs[0].destination_airport}`) + xScale.bandwidth() / 2)
+            .attr('y', (dataObj) => yScale(dataObj.carbon_lb) - 20)
+            .attr('text-anchor', 'middle')
+            .text((dataObj) => `${dataObj.carbon_kg} kg`)
+
+         d3.select(this)
+            .append('text')
+            .attr('class', 'additional-values')
+            .attr('x', (dataObj) =>  xScale(`${dataObj.legs[0].departure_airport} to ${dataObj.legs[0].destination_airport}`) + xScale.bandwidth() / 2)
+            .attr('y', (dataObj) => yScale(dataObj.carbon_lb) - 10)
+            .attr('text-anchor', 'middle')
+            .text((dataObj) => `${dataObj.carbon_mt} mt`)
+
+        d3.select(this)
+            .append('text')
+            .attr('class', 'additional-values')
+            .attr('x', (dataObj) =>  xScale(`${dataObj.legs[0].departure_airport} to ${dataObj.legs[0].destination_airport}`) + xScale.bandwidth() / 2)
+            .attr('y', (dataObj) => yScale(dataObj.carbon_lb))
+            .attr('text-anchor', 'middle')
+            .text((dataObj) => `${dataObj.passengers} pax`)
+
     })
     
     barGroup 
