@@ -108,13 +108,22 @@ const carbonfootprintChart = () => {
         
         const y = yScale(i.carbon_lb) + 2;
         line = chart.append('line')
-            .attr('id', 'limit')
+            .attr('id', 'line-total')
             .attr('x1', 0)
             .attr('y1', y)
             .attr('x2', width)
             .attr('y2', y)
     })
+    .on('mouseleave', function (){
+        d3.select(this)
+            .transition()
+            .duration(300)
+            .attr('opacity', 1)
+            .attr('x', (dataObj) => xScale(`${dataObj.legs[0].departure_airport} to ${dataObj.legs[0].destination_airport}`))
+            .attr('width', xScale.bandwidth())
+    })
 
+    // Bar enter text. Makes the amount disappear and introduces new values
     barGroup.on('mouseenter', function(bar, i){
         d3.select(this).select('.value').attr('opacity', 0)
         d3.select(this)
@@ -157,13 +166,21 @@ const carbonfootprintChart = () => {
             .attr('text-anchor', 'middle')
             .text((dataObj) => `${dataObj.passengers} pax`)
 
-    })
+    });
+
+    barGroup.on('mouseleave', function () {
+        d3.select(this).select('.value').attr('opacity', 1)
+        chart.selectAll('#line-total').remove()
+        chart.selectAll('.additional-values').remove()
+    });
+
+
     
     barGroup 
     .append('text')
     .attr('class', 'value')
     .attr('x', (dataObj) =>  xScale(`${dataObj.legs[0].departure_airport} to ${dataObj.legs[0].destination_airport}`) + xScale.bandwidth() / 2)
-    .attr('y', (dataObj) => yScale(dataObj.carbon_lb) + 30)
+    .attr('y', (dataObj) => yScale(dataObj.carbon_lb) + 17)
     .attr('text-anchor', 'middle')
     .text((dataObj) => `${dataObj.carbon_lb}`)
     

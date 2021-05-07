@@ -146,7 +146,7 @@ svg{
   background-color: #f1f1e8;
 }
 
-#limit{
+#line-total{
     stroke: #206a5d;
     stroke-width: 3;
     stroke-linecap: round;
@@ -160,4 +160,5 @@ svg{
   font-family: 'Titillium Web', sans-serif;
   font-size: 17px;
   fill: #a35709;
+  font-weight: 600;
 }
