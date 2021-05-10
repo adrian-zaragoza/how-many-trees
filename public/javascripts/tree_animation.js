@@ -25,8 +25,10 @@ const moveTree = (tree) => {
 const runTreeAnimation = (carbonTotal) => {
   let numOfTrees = Math.ceil(carbonTotal / 48);
   let treeContainer = document.getElementById("tree-icon-container");
+
   let treeAmountText = document.createElement("h1")
-  treeAmountText.textContent = `${numOfTrees} Trees`;
+  
+  treeAmountText.textContent = `${numOfTrees} ${(numOfTrees === 1) ? 'Tree' : 'Trees'}`;
   treeAmountText.classList.add('grow');
   treeContainer.appendChild(treeAmountText);
 
