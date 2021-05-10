@@ -181,3 +181,24 @@ svg{
   width: 75px;
   height: auto;
 }
+
+
+/* Text Grow Animation */
+.grow {
+  width: 300px;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+  position: absolute;
+  animation: grow-animation 3s linear infinite;
+  z-index: 20;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes grow-animation {
+  0% { transform: scale(1); color: #206a5d; }
+  50% {transform: scale(4); color: #206a5d; }
+  100% {transform: scale(1); color: #bfdcae; }
+}

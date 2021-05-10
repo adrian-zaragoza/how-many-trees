@@ -1,3 +1,4 @@
+import { tree } from "d3-hierarchy";
 
 
 const moveTree = (tree) => {
@@ -24,6 +25,10 @@ const moveTree = (tree) => {
 const runTreeAnimation = (carbonTotal) => {
   let numOfTrees = Math.ceil(carbonTotal / 48);
   let treeContainer = document.getElementById("tree-icon-container");
+  let treeAmountText = document.createElement("h1")
+  treeAmountText.textContent = `${numOfTrees} Trees`;
+  treeAmountText.classList.add('grow');
+  treeContainer.appendChild(treeAmountText);
 
   for(let i = 0; i < numOfTrees; i++){
     let treeIcon = document.createElement("div");
@@ -32,9 +37,8 @@ const runTreeAnimation = (carbonTotal) => {
     treeContainer.appendChild(treeIcon);
 
     treeIcon.style.top = (Math.random() * - 800) + window.scrollY + "px";
-    treeIcon.style.left = Math.floor(Math.random() * window.innerWidth - 100) + "px";
-    treeIcon.style.right = Math.floor(Math.random() * window.innerWidth + 200) + "px";
-
+    treeIcon.style.left = Math.floor(Math.random() * (window.innerWidth - 75)) + "px";
+    
     moveTree(treeIcon)
   }
 
