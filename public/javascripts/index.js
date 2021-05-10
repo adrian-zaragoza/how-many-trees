@@ -57,8 +57,6 @@ const carbonfootprintChart = () => {
         let trip = JSON.parse(sessionStorage.getItem(key));
         dataArr.push(trip)
     }
-
-    console.log(dataArr)
     
     const width = 500;
     const height = 300;
@@ -175,8 +173,17 @@ const carbonfootprintChart = () => {
         chart.selectAll('.additional-values').remove()
     });
 
+    //On click handle the runTreeAnimation. 
+    let clicked;
     barGroup.on('click', function (bar, data) {
-        runTreeAnimation(data.carbon_lb);
+        if(!clicked){
+            clicked = true;
+            runTreeAnimation(data.carbon_lb);
+            window.setTimeout(() => {
+                clicked = false;
+            }, 2500);
+        }
+        
     });
     
     barGroup 
