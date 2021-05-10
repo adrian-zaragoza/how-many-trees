@@ -162,3 +162,22 @@ svg{
   fill: #a35709;
   font-weight: 600;
 }
+
+/* Tree Animation */
+.add-tree-icon{
+  background-image: url('../images/treeicon.svg');
+  background-repeat:no-repeat;
+  width: 75px;
+  height: 75px;
+  position: absolute;
+  z-index: 10;
+}
+
+.hide{
+  display: none;
+}
+
+.show{
+  width: 75px;
+  height: auto;
+}
