@@ -1,8 +1,9 @@
 # How Many Trees Does This Cost?
+![how-many-trees-gif](https://github.com/adrian-zaragoza/how-many-trees/blob/main/public/images/how-many-trees.gif)
+
 ## Description
 How Many Trees Does This Cost? is an app that measures your personal carbon footprint based on
-flights(based on the number of passengers and the to and from airports).Interactive graphs display the carbon footprint and the number of trees needed to offset the carbon footprint. 
-Animations show the number of trees on the screen.
+flights (using the number of passengers and the departure and destination airports). Interactive graphs display the carbon footprint and the number of trees needed to offset the carbon footprint. Animations also show the number of trees on the screen displayed at random places.
 
 ## Technologies Used
 ### Frontend
@@ -16,7 +17,7 @@ Animations show the number of trees on the screen.
 * Carbon Interface API 
   * For carbon footprint data
 * Express
-  * for the API calls
+  * For the API calls to Carbon Interface
 
 ### Dependencies
 * Express.js
@@ -29,7 +30,13 @@ Animations show the number of trees on the screen.
 ## Features
 
 ### Carbon Footprint Data Graphs
-1. Challenge: Having multiple bars show in the graph for each flight.
+1. Challenge: Having multiple bars show in the graph for each flight without a database.
    * Solution: Used sessionStorage to save the flight details for each flight destination and to clear the flight data after the user closes the app.
-![image](https://user-images.githubusercontent.com/77212035/116846490-3b6ac400-ab9d-11eb-9340-7768e54dc359.png)
+
+### Animation of Trees
+1. Challenge: Having the trees appear when clicked and disappear.
+   * Solution: Built an algorithm to randomly assign a top and left pixel to the tree image. Implemented setTimeout to remove the trees after 2.5 seconds.
+2. Challenge: Prevent user from clicking animation multiple times.
+   * Solution: Created a flag and set it equal to true when the bar was clicked. Added a conditional on the flag to check before running the animation.
+
 
