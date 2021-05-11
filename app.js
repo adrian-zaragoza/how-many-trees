@@ -1,4 +1,5 @@
 const express = require('express')
+const favicon = require('serve-favicon');
 const app = express()
 const path = require('path')
 const fetch = require('node-fetch')
@@ -7,8 +8,10 @@ const jsonParser = bodyParser.json();
 const sslRootCAs = require('ssl-root-cas')
 sslRootCAs.inject()
 
-
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')))
+//app.use('/favicon.ico', express.static('public/images/favicon.ico'));
 const PORT = process.env.PORT || 8000; // process.env accesses heroku's environment variables
+
 
 app.use(express.static('public'))
 

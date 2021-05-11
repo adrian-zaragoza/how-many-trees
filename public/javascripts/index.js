@@ -31,7 +31,6 @@ const sendFlightApiRequest = (e) => {
         "distance_unit": "mi"
         })
         .then((response) => {
-            console.log(response.data.data.attributes)
             sessionStorage.setItem(`${response.data.data.attributes.legs[0].departure_airport} to ${response.data.data.attributes.legs[0].destination_airport}`, JSON.stringify(response.data.data.attributes))
             let graphParentEle = document.getElementById('category-chart')
             removeChildNodes(graphParentEle);

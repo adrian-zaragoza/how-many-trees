@@ -1,6 +1,3 @@
-import { tree } from "d3-hierarchy";
-
-
 const moveTree = (tree) => {
   let start;
 
