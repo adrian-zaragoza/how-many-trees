@@ -28,7 +28,7 @@ Animations show the number of trees on the screen.
 
 ## Features
 
-# Carbon Footprint Data Graphs
+### Carbon Footprint Data Graphs
 1. Challenge: Having multiple bars show in the graph for each flight.
    * Solution: Used sessionStorage to save the flight details for each flight destination and to clear the flight data after the user closes the app.
 ![image](https://user-images.githubusercontent.com/77212035/116846490-3b6ac400-ab9d-11eb-9340-7768e54dc359.png)
