@@ -16,7 +16,7 @@
     "server": "nodemon app.js",
     "server:debug": "nodemon --inspect app.js",
     "start:debug": "DEBUG=* node app.js",
-    "build": "webpack --watch --mode development"
+    "postinstall": "webpack"
   },
   "keywords": [],
   "author": "",
