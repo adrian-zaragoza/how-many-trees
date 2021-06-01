@@ -233,7 +233,14 @@ svg{
   justify-content: space-evenly;
 }
 
-#linkedin, #angellist, #github{
+#linkedin, #angellist, #github, #personal{
+  width: 40px;
+  height: auto;
+}
+
+
+
+#personal > img{
   width: 40px;
   height: auto;
 }
