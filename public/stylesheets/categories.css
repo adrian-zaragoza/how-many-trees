@@ -6,6 +6,8 @@ header > h1{
   margin-bottom: 40px;
 }
 
+
+
 header{
   margin-top: 15px;
   margin-left: 5px;
@@ -84,6 +86,14 @@ header{
   font-weight: 600;
 }
 
+.nav-bar h2{
+  text-align: center;
+  margin-bottom: 35px;
+  font-size: 20px;
+  color:#a35709;
+  font-weight: 600;
+}
+
 #category-chart{
   background-color: #f1f1e8;
   padding-left: 20px;
@@ -152,6 +162,11 @@ header{
 
 .carbonfootprint-form > label > input[type="number"]{
   margin-left: 5px;
+  width: 60px;
+}
+
+b{
+  font-weight: 700;
 }
 
 /* Graph */
@@ -165,7 +180,13 @@ svg{
   font-size: 14px;
   font-weight: 700;
   fill: #206a5d;
-  background-color: #f1f1e8;
+  letter-spacing: 0.1em;
+  line-height: 5;
+  margin-top: 5px;
+}
+
+.additional-values-container{
+  fill: whitesmoke;
 }
 
 #line-total{
@@ -176,6 +197,10 @@ svg{
 
 .bar{
   fill: #81b214;
+}
+
+.bar:hover, .additional-values:hover, .additional-values-container:hover{
+  cursor: pointer;
 }
 
 .value{

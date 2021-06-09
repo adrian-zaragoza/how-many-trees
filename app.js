@@ -8,8 +8,8 @@ const jsonParser = bodyParser.json();
 const sslRootCAs = require('ssl-root-cas')
 sslRootCAs.inject()
 
-app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')))
-//app.use('/favicon.ico', express.static('public/images/favicon.ico'));
+// app.use(favicon(path.join(__dirname, 'public', 'images', 'treeicon.svg')))
+app.use('/public', express.static('public'));
 const PORT = process.env.PORT || 8000; // process.env accesses heroku's environment variables
 
 
